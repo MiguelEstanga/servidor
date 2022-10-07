@@ -11,7 +11,7 @@ const Comentario = require("./router/ComentarioPost")
 require('./conexion')
 
 //puerto
-app.set('PORT' , process.env.PORT || 4000)
+
 //multer configuracion
 const storage = multer.diskStorage({
     destination:path.join( __dirname , '/public/imagen'),
@@ -38,6 +38,6 @@ app.use(Comentario)
 app.use(express.static(path.join(__dirname , 'public')))
 
 
-app.listen( app.get("PORT"),()=>{
+app.listen( 4000 ,()=>{
     console.log('app lista')
 } )

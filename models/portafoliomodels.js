@@ -5,6 +5,7 @@ const PortafolioModel = new Schema({
     Imagen:{type:String},
     type:{type:String},
     nombre:{type:String},
+    descripcion:{type:String},
     Tecnologias:{type:[]},
     ruta:{type:String}
   

@@ -2,7 +2,7 @@ const postImagen = require('express').Router()
 const PortafolioModel =require('../models/portafoliomodels')
 
 postImagen.post('/Imagenes' , async (req , res) =>{
-    const {nombre , type,Tecnologias} = req.body
+    const {nombre , type,Tecnologias ,descripcion} = req.body
    
    // const data = fs.readFileSync(path.join(__dirname , '../public/imagen/' + req.file.fieldname ))
     try {
@@ -10,8 +10,8 @@ postImagen.post('/Imagenes' , async (req , res) =>{
         const Data = new PortafolioModel({
             Imagen:req.file.originalname,
             nombre,
+            descripcion,
             type,
-            
             ruta: '/imagen/' + req.file.filename
         })
         const dataTecno = Tecnologias.split(',')
