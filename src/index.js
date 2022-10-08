@@ -37,7 +37,7 @@ app.use(Comentario)
 //static 
 app.use(express.static(path.join(__dirname , 'public')))
 
-
+app.set('port' , process.env.PORT || 4000)
 app.listen( 4000 ,()=>{
-    console.log('app lista')
+    console.log('app lista en el puerto ' , app.get("port") )
 } )
