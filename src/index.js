@@ -3,29 +3,23 @@ const app = express()
 const cors  = require('cors')
 const Habilidades = require("./router/HabulidadesPost")
 const getportafolio = require("./router/Getportafolio")
-const multer = require('multer')
+const fileUpload = require("express-fileupload")
 const postImagen = require('./router/ImagenesPost')
-const path = require('path')
+
 const Email = require('./router/EmailPost')
 const Comentario = require("./router/ComentarioPost")
-require('./conexion')
+require('../util/conexion')
 
-//puerto
 
-//multer configuracion
-const storage = multer.diskStorage({
-    destination:path.join( __dirname , '/public/imagen'),
-    filename:(req , file , cb) =>{
-        const extencion = file.originalname.split('.').pop()
-        cb(null , `${Date.now()}.${extencion}`)
-    }
-})
+
+
 //midelware
 app.use(express.json())
 app.use(cors('dev'))
-app.use(multer({storage}).single('file'))
-
-
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : './apload'
+}));
 //ruatas
 app.use(Habilidades)
 app.use(getportafolio)
@@ -35,9 +29,10 @@ app.use(Comentario)
 
 
 //static 
-app.use(express.static(path.join(__dirname , 'public')))
+//app.use(express.static(path.join(__dirname , 'public')))
 
-app.set('port' , process.env.PORT || 4000)
-app.listen( 4000 ,()=>{
-    console.log('app lista en el puerto ' , app.get("port") )
+
+const port = process.env.PORT || 4000
+app.listen( port ,()=>{
+    console.log('app lista en el puerto ' , port )
 } )

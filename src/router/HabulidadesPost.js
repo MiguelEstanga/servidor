@@ -1,14 +1,17 @@
 const Habilidades = require('express').Router()
 const HabilidadesModel = require('../models/HabilidadesModel')
-
+const uploadsImagenes = require("../../util/cloudinary")
 Habilidades.post("/Habilidades" , async (req , res) =>{
     const {nombre , color} = req.body
    
     try {
+        const { tempFilePath } = req.files.file
+        const resultado = await uploadsImagenes(tempFilePath , "Habilidades") 
+        console.log(resultado)
         const data  = new HabilidadesModel({
             nombre,
-            Imagen:req.file.originalname,
-            ruta:'/imagen/' + req.file.filename,
+            Imagen:resultado.url,
+            ruta:resultado.url,
             color
         })
         data.save()
