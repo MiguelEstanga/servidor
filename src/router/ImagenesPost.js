@@ -14,7 +14,8 @@ postImagen.post('/Portafolio' , async (req , res) =>{
             nombre,
             descripcion,
             type,
-            ruta: resultado.url
+            ruta: resultado.url,
+            fecha:Date()
         })
         //array con las tecnologias
         const dataTecno = Tecnologias.split(',')
