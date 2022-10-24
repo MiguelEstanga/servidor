@@ -8,7 +8,7 @@ postImagen.post('/Portafolio' , async (req , res) =>{
         const { tempFilePath } = req.files.file
         //achivando imagenes en lineas
         const resultado = await uploadsImagenes(tempFilePath , "Portafolio") 
-        console.log(resultado)
+       
         const Data = new PortafolioModel({
             Imagen:resultado.url,
             nombre,
@@ -23,13 +23,14 @@ postImagen.post('/Portafolio' , async (req , res) =>{
         })
       
          Data.save()
+         res.send('cargado exitosamente')
         res.json({mensage:"listo"})
     } catch (error) {
         res.send(error)
         console.log('error al subir la imagen ')
     }
 
-    res.send('cargado exitosamente')
+   
 })
 
 module.exports = postImagen 
