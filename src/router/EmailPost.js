@@ -6,7 +6,7 @@ Email.post('/Email' , async (req , res) =>{
     const {Email} = req.body
 
      try {
-         const data  = new EmailModelo({Email})
+         const data  = new EmailModelo({Email , fecha:Date() })
          await data.save()
          res.json({mensage:'registro exitoso'})
      } catch (error) {
