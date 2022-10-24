@@ -7,7 +7,9 @@ const PortafolioModel = new Schema({
     nombre:{type:String},
     descripcion:{type:String},
     Tecnologias:{type:[]},
-    ruta:{type:String}
+    ruta:{type:String},
+    fecha:{type:String},
+    hora:{type:String}
   
 })
 module.exports = model('portafolios' , PortafolioModel)
