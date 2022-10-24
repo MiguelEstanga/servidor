@@ -11,7 +11,8 @@ Comentario.post("/Comentario" , async (req , res) => {
             Comentario,
             Nombre,
             Email,
-            Avatar:resultado.url
+            Avatar:resultado.url,
+            fecha:Data()
         })
 
         await data.save();
